@@ -1,10 +1,10 @@
 Package: shinyloadtest
 Type: Package
 Title: Load Test Shiny Applications
-Version: 1.0.1
+Version: 1.1.0
 Authors@R: c(
-            person("Alan", "Dipert", role = c("aut", "cre"), email = "alan@rstudio.com"),
-            person("Barret", "Schloerke", role = c("aut"), email = "barret@rstudio.com"),
+            person("Barret", "Schloerke", role = c("aut", "cre"), email = "barret@rstudio.com", comment = c(ORCID = "0000-0001-9986-114X")),
+            person("Alan", "Dipert", role = c("aut")),
             person("Barbara", "Borges", role = c("aut")),
             person("RStudio", role = c("cph", "fnd"))
             )
@@ -23,19 +23,20 @@ BugReports: https://github.com/rstudio/shinyloadtest/issues
 Collate: 'enum.R' 'data.R' 'analysis.R' 'detect.R' 'auth.R'
         'make_report.R' 'plotting.R' 'shiny-recorder.R' 'url.R'
         'util.R' 'util-pipe.R'
-Imports: R6, curl, dplyr (>= 0.8.0.1), getPass, ggplot2, glue, gtable,
-        htmltools, httpuv (>= 1.5.2), jsonlite, lubridate, magrittr,
-        progress, readr, rlang (>= 0.1.2), rmarkdown, scales, stringr,
-        tibble, svglite, websocket (>= 1.0.0), xml2
-RoxygenNote: 7.0.2
-Suggests: testthat, usethis
+Imports: R6, curl, dplyr (>= 1.0.0), ggplot2, httpuv (>= 1.5.2),
+        jsonlite, magrittr, rlang (>= 0.1.2), scales, stringr, svglite,
+        vroom, websocket (>= 1.0.0), xml2
+Suggests: getPass, glue, gtable, htmltools, lubridate, progress,
+        rmarkdown, testthat, spelling
+RoxygenNote: 7.1.1
 SystemRequirements: pandoc (>= 2.2) - http://pandoc.org
+Language: en-US
 NeedsCompilation: no
-Packaged: 2020-01-07 16:19:00 UTC; alan
-Author: Alan Dipert [aut, cre],
-  Barret Schloerke [aut],
+Packaged: 2021-02-10 23:38:26 UTC; barret
+Author: Barret Schloerke [aut, cre] (<https://orcid.org/0000-0001-9986-114X>),
+  Alan Dipert [aut],
   Barbara Borges [aut],
   RStudio [cph, fnd]
-Maintainer: Alan Dipert <alan@rstudio.com>
+Maintainer: Barret Schloerke <barret@rstudio.com>
 Repository: CRAN
-Date/Publication: 2020-01-09 10:20:02 UTC
+Date/Publication: 2021-02-11 14:50:02 UTC
