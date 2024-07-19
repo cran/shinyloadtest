@@ -1,9 +1,11 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # Load Testing Shiny Applications
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/rstudio/shinyloadtest/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/shinyloadtest/actions)
+[![R-CMD-check](https://github.com/rstudio/shinyloadtest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rstudio/shinyloadtest/actions)
 <!-- badges: end -->
 
 The [`shinyloadtest` package](https://rstudio.github.io/shinyloadtest/)
@@ -17,26 +19,24 @@ bottlenecks and to guide changes to infrastructure, configuration, or
 code.
 
 Scientific load testing helps put to rest the common misconception that
-**"**Shiny doesn’t scale". As rstudio::conf(2018) Sean Lopp presented on
-[Scaling
-Shiny](https://rstudio.com/resources/rstudioconf-2018/scaling-shiny/)
-which shows how to to horizontally scale an app to handle tens of
-thousands of users.
+“Shiny doesn’t scale”. As rstudio::conf(2018) Sean Lopp presented on
+[Scaling Shiny](https://posit.co/resources/videos/scaling-shiny/) which
+shows how to to horizontally scale an app to handle tens of thousands of
+users.
 
 ## Installation
 
 To perform a load test you’ll need two pieces of software:
 
-  - `shinyloadtest` is an R package used to generate recordings and
-    analyze results. You should install it on your development machine
-    with `install.packages("shinyloadtest")`.
-  - `shinycannon` is a command-line used to replay recordings in
-    parallel. You can install it on your development machine for
-    testing, but for best results we recommend installing it on a
-    server, and preferably not the one the application under test is
-    also on. See [installation
-    instructions](https://rstudio.github.io/shinyloadtest/articles/shinycannon.html#installation)
-    for operating specific install instructions..
+- `shinyloadtest` is an R package used to generate recordings and
+  analyze results. You should install it on your development machine
+  with `install.packages("shinyloadtest")`.
+- `shinycannon` is a command-line used to replay recordings in parallel.
+  You can install it on your development machine for testing, but for
+  best results we recommend installing it on a server, and preferably
+  not the one the application under test is also on. See [installation
+  instructions](https://rstudio.github.io/shinyloadtest/articles/shinycannon.html#installation)
+  for operating specific install instructions..
 
 ## Quick Start
 
@@ -57,7 +57,7 @@ Record a session using `shinyloadtest::record_session()`, which takes
 the URL of the **deployed** application as an argument:
 
 ``` r
-shinyloadtest::record_session('https://shinyapp.example.com/')
+shinyloadtest::record_session("https://shinyapp.example.com/")
 ```
 
 Running the function will open a browser displaying the app. Once open,
@@ -77,10 +77,13 @@ are not compatible with shinyloadtest.
 With the recording in hand, we’re ready to run the load test. The actual
 test is conducted outside of R using the `shinycannon` command-line
 tool. You can run it using your system’s terminal or console program, or
-you can run it from the RStudio terminal tab. A typical run looks like
-this:
+you can run it from the RStudio IDE’s terminal tab. A typical run looks
+like this:
 
     shinycannon recording.log https://shinyapp.example.com/ --workers 5 --loaded-duration-minutes 2 --output-dir run1
+
+(On Windows, you will need to replace “`shinycannon`” with
+`java -jar shinycannon-VERSION.jar`.)
 
 See [the shinycannon
 article](https://rstudio.github.io/shinyloadtest/articles/shinycannon.html#recording)
@@ -102,4 +105,8 @@ inspection. For further analysis explanation, please visit [Analysing
 load test
 logs](https://rstudio.github.io/shinyloadtest/articles/analyzing-load-test-logs.html).
 
-![Analysis Example](man/figures/slt_report_screenshot.png)
+<figure>
+<img src="man/figures/slt_report_screenshot.png"
+alt="Analysis Example" />
+<figcaption aria-hidden="true">Analysis Example</figcaption>
+</figure>

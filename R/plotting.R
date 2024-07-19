@@ -1,7 +1,5 @@
-if (getRversion() >= "2.15.1") {
-  # TODO remove and upgrade the dplyr fns to FN_()
-  utils::globalVariables(c("start", "end", "ready", "begin", "label", "time", "maintenance", "quantile", "spread", "HTTP", "WebSocket", "val", "name", "max_latency", "colorCol", "xmin", "xmax", "ymin", "ymax", "fill"))
-}
+# TODO remove and upgrade the dplyr fns to FN_()
+utils::globalVariables(c("start", "end", "ready", "begin", "label", "time", "maintenance", "quantile", "spread", "HTTP", "WebSocket", "val", "name", "max_latency", "colorCol", "xmin", "xmax", "ymin", "ymax", "fill"))
 
 #' @rawNamespace import(ggplot2, except = vars)
 #' @importFrom stats reorder
@@ -23,7 +21,8 @@ NULL
 #' @rdname slt_plot
 #' @return A \code{\link[ggplot2]{ggplot}} plot object
 #' @examples
-#' \donttest{slt_user(slt_demo_data_4)
+#' \donttest{
+#' slt_user(slt_demo_data_4)
 #' slt_session(slt_demo_data_4)
 #' slt_session_duration(slt_demo_data_4)
 #'
@@ -34,7 +33,8 @@ NULL
 #' slt_session_latency(slt_demo_data_4)
 #' slt_http_latency(slt_demo_data_4)
 #' slt_websocket_latency(slt_demo_data_4)
-#' slt_hist_loadtimes(slt_demo_data_4)}
+#' slt_hist_loadtimes(slt_demo_data_4)
+#' }
 NULL
 
 #' @describeIn slt_plot Box plot of load times for each event in each run
@@ -100,7 +100,7 @@ slt_waterfall <- function(df, limits = NULL) {
     mutate(label = fct_rev(str_trunc(label, 50)))
 
   ggplot(df1, aes(end, label, group = session_id, color = concurrency)) +
-    geom_line(size = 0.5) +
+    geom_line(linewidth = 0.5) +
     maintenance_vline(df1, "time") +
     scale_colour_gradientn(
       colours = c("#413554", "#75aadb", "#9efa9e", "#fdc086"),
@@ -223,7 +223,7 @@ latency_df <- function(df) {
 }
 
 gantt_latency <- function(df) {
- df_lat <- latency_df(df) %>%
+  df_lat <- latency_df(df) %>%
     spread(event, total_latency) %>%
     mutate(
       perc_http = HTTP / (HTTP + WebSocket)
@@ -259,7 +259,6 @@ gantt_latency <- function(df) {
       type = factor(type, levels = c("mean", "95%", "max"))
     ) %>%
     spread(type, val)
-
 }
 
 #' @describeIn slt_plot Stacked bar chart of event duration for each session within each run
@@ -369,7 +368,7 @@ maintenance_vline <- function(data, type = c("time", "session")) {
   summary <- data %>%
     group_by(run) %>%
     filter(maintenance) %>%
-    summarise(
+    reframe(
       event = "Warm up / Cooldown",
       time = if (type == "time") {
         c(min(start), max(end))
@@ -381,7 +380,7 @@ maintenance_vline <- function(data, type = c("time", "session")) {
   geom_vline(
     aes(xintercept = time),
     data = summary,
-    size = 0.5,
+    linewidth = 0.5,
     linetype = "dashed",
     colour = alpha("black", 0.70)
   )
@@ -430,7 +429,7 @@ run_fill_colors <- c(
   "#967250", # very dark orange
   "#8a433f", # very dark red
   "#467362", # very dark teal
-  "#3d5973"  # very dark blue
+  "#3d5973" # very dark blue
 )
 run_accent_color_map <- c(
   # Accent colors only to be used as accents
@@ -439,7 +438,7 @@ run_accent_color_map <- c(
   green = "#144714",
 
   # for use with data colors: 02, 08, 14, 18
-  purple =  "#413554",
+  purple = "#413554",
 
   # for use with data colors: 03, 09, 19
   orange = "#7a4920",

@@ -26,7 +26,7 @@ default if port 8600 is used by another service.}
 \item{open_browser}{Whether to open a browser on the proxy (default=\code{TRUE})
 or not (\code{FALSE}).}
 
-\item{connect_api_key}{An RStudio Connect api key. It may be useful to use
+\item{connect_api_key}{An Posit Connect api key. It may be useful to use
 \code{Sys.getenv("CONNECT_API_KEY")}.}
 }
 \value{
@@ -68,7 +68,7 @@ when the recording is played back with the \code{shinycannon} tool.
 
 \examples{
 \dontrun{
-  record_session("https://example.com/your-shiny-app/")
+record_session("https://example.com/your-shiny-app/")
 }
 }
 \seealso{
