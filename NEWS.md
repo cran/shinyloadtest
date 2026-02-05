@@ -1,3 +1,14 @@
+# shinyloadtest 1.2.1
+
+## Bug fixes and minor improvements
+
+* Fixed R CMD check NOTE about undefined global variable `id` in `dplyr`
+  code (#182).
+
+* Waterfall plot labels now support all message types as of `shiny` v1.9.1,
+  removing empty `Set:` and `Updated:` labels and replacing them with
+  appropriate labels (#179).
+
 # shinyloadtest 1.2.0
 
 ### Bug Fixes
@@ -5,8 +16,6 @@
 * Fixed #168: Remove deprecated usage of `dplyr::summarise` during `shinyloadtest_report`.
 
 * Fixed #163: `gtable_trim` error during `shinyloadtest_report` with newer versions of ggplot2.
-
-
 
 # shinyloadtest 1.1.0
 
